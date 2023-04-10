@@ -25,7 +25,7 @@
             <option value="">CÉDULA</option>
             <option value="">PASAPORTE</option>
           </select>
-          <input type="text" placeholder="NUMERO DE DOCUMENTO" v-model="part1.numeroDocumento" >
+          <input type="number" placeholder="NUMERO DE DOCUMENTO" v-model="part1.numeroDocumento" >
           <input type="file" placeholder="FOTO DOCUMENTO ADELANTE" @change="onChangeFile" class="file-select">
           <input type="file" placeholder="FOTO DOCUMENTO ATRÁS" @change="onChangeFile2" class="file-select">
         
@@ -38,8 +38,8 @@
           <input type="text" placeholder="EMAIL" v-model="part2.email">
           <input type="password" placeholder="PASSWORD" v-model="part2.password">
           <input type="password" placeholder="CONFIRMAR CONTRASEÑA" v-model="part2.passwordConfirm">
-          <input type="text" placeholder="NUMERO TELEFONO" v-model="part2.tel">
-          <input type="text" placeholder="NUMERO CELULAR" v-model="part2.phone">
+          <input type="number" placeholder="NUMERO TELEFONO" v-model="part2.tel">
+          <input type="number" placeholder="NUMERO CELULAR" v-model="part2.phone">
         
         </div>
 
@@ -48,7 +48,7 @@
 
         <!-- paso 3 -->
         <input type="text" placeholder="DIRECCION RESIDENCIA" v-model="part3.addres">
-        <input type="text" placeholder="CODIGO POSTAL" v-model="part3.codigoPostal">
+        <input type="number" placeholder="CODIGO POSTAL" v-model="part3.codigoPostal">
         <input type="submit" value="ENVIAR" title="Enviar" class="button" />
         </div>
       </div>
@@ -233,6 +233,34 @@ export default {
   grid-template-columns: 320px 320px;
   column-gap: 30px;
   row-gap: 30px;
+}
+
+@media (max-width: 800px) {
+  .tab1{
+    margin-top: 160px;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 320px;
+  row-gap: 50px;
+}
+
+.tab2{
+  margin-top: 30px;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 320px;
+  row-gap: 50px;
+}
+
+.tab3{
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 320px;
+  row-gap: 50px;
+}
 }
 
 input{
