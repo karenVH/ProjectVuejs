@@ -1,0 +1,18 @@
+@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  display : grid;
+  place-content: center;
+  width: 100vw;
+  height: 100%;
+  background: #212121;
+  overflow-x: hidden;
+}
+
+#app{
+  width: 100%;
+  height: 100%;
+}
