@@ -13,9 +13,9 @@
           <input type="number" placeholder="NUMERO CELULAR" >
         
       </div>
-      <div class="item">
-
+      <div class="itembtn">
         <button @click="onSubmit">SIGUIENTE</button>
+        <button  @click="onBack">ANTERIOR</button>
       </div>
   </div>
 </template>
@@ -40,6 +40,9 @@ export default {
         this.error = null;
         this.$emit('next-step', { nombre: this.nombre, email: this.email });
       }
+    },
+    onBack() {
+      this.$emit('previous-step');
     }
   }
 }
@@ -56,9 +59,12 @@ border-radius: 5px;
 color: #fad819;
 }
 
-.errordiv img{
-width: 50px;
-height: 50px;
+.itembtn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+
 }
 h2{
 color: #fad819;

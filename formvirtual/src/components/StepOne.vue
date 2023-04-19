@@ -1,97 +1,106 @@
 <template>
-    <div class="container">
-      <div class="item">
+  <div class="container">
+    <div class="item">
 
-        <h2>PASO {{ step }}</h2>
-        <strong>{{ error }}</strong>
-      </div>
-      <div class="content">
-        <input type="text" v-model="nombre" placeholder="nombre">
-        <input type="email" v-model="email" placeholder="email">
+      <h2>PASO {{ step }}</h2>
+      <strong>{{ error }}</strong>
+    </div>
+    <div class="content">
+      <input type="text" v-model="nombre" placeholder="Nombre">
+      <input type="text" v-model="segundonombre" placeholder="Segundo Nombre" />
+      <input type="text" v-model="apellido" placeholder="Apellidos" />
+ 
       <select name="" id="">
         <option value="">País</option>
-      </select>   
-          <select name="" id="">
-            <option value="">Genero</option>
-            <option value="">mujer</option>
-              <option value="">hombre</option>
-          </select>
-          <input type="text" name="fname" placeholder="First Name" />
-          <input type="text" name="lname" placeholder="Last Name" />
-          <input type="text" name="phone" placeholder="Phone" />
-          <input type="date">
-          <select name="" id="">
-            <option value="">CC</option>
-            <option value="">TI</option>
-            <option value="">PP</option>
-          </select>
-          <input type="number" placeholder="Numero documento"/>
-          <input type="file" placeholder="FOTO DOCUMENTO ADELANTE" class="file-select">
-          <input type="file" placeholder="FOTO DOCUMENTO ATRÁS" class="file-select">
-        
-        </div>
-        <div class="item">
+      </select>
+      <select name="" id="">
+        <option value="">Genero</option>
+        <option value="">mujer</option>
+        <option value="">hombre</option>
+      </select>
+      <input type="date">
+      <select name="" id="">
+        <option value="">Tipo Documento</option>
+        <option value="opcion1">CC</option>
+        <option value="opcion2">TI</option>
+        <option value="opcion3">PP</option>
+      </select>
+      <input type="number" placeholder="Numero documento" />
+      <input type="file" placeholder="FOTO DOCUMENTO ADELANTE" class="file-select" id="archivo" >
+      <input type="file" placeholder="FOTO DOCUMENTO ATRÁS" class="file-select">
 
-          <button @click="onSubmit">SIGUIENTE</button>
-        </div>
     </div>
-  </template>
+    <div class="item">
+
+      <button @click="onSubmit">SIGUIENTE</button>
+    </div>
+  </div>
+</template>
   
-  <script lang="ts">
-  export default {
-    props: {
-      step: Number
-    },
-    data() {
-      return {
-        nombre: '',
-        email: '',
-        error: null
-      }
-    },
-    methods: {
-      onSubmit() {
-        if (!this.nombre || !this.email) {
-          this.error = 'Por favor, completa todos los campos';
-        } else {
-          this.error = null;
-          this.$emit('next-step', { nombre: this.nombre, email: this.email });
-        }
+<script lang="ts">
+export default {
+  props: {
+    step: Number
+  },
+  data() {
+    return {
+      nombre: '',
+      segundonombre: '',
+      apellido: '',
+      pais: '',
+      genero: '',
+      fecha: '',
+      tipodocumento: '',
+      numerodocumento: '',
+      imagenAdelante: null,
+      imagenAtras: '',
+      error: null
+    }
+  },
+  methods: {
+    onSubmit() {
+      if (!this.nombre || !this.email) {
+        this.error = 'Por favor, completa todos los campos';
+      } else {
+        this.error = null;
+        this.$emit('next-step', { nombre: this.nombre, email: this.email });
       }
     }
   }
-  </script>
+}
+</script>
 
 
 <style>
-
-strong{
+strong {
   width: 100%;
- border: 1px solid #fad819;
+  border: 1px solid #fad819;
   padding: 2%;
   border-radius: 5px;
   color: #fad819;
 }
 
-.errordiv img{
+.errordiv img {
   width: 50px;
   height: 50px;
 }
-h2{
+
+h2 {
   color: #fad819;
-  
+
 }
-button{
-width: 200px;
-border: 0.5px solid #fad819;
-background: none;
+
+button {
+  width: 200px;
+  border: 0.5px solid #fad819;
+  background: none;
   height: 30px;
   color: #fad819;
   cursor: pointer;
   border-radius: 5px;
 }
 
-button:hover{
+button:hover {
   background: #fad819;
   color: #000000;
 }
@@ -103,7 +112,8 @@ button:hover{
   align-content: center;
   align-items: center;
 }
-.container{
+
+.container {
   font-family: 'Montserrat', sans-serif;
   width: 100vw;
   height: 100vh;
@@ -113,13 +123,13 @@ button:hover{
   place-content: center;
 }
 
-.content{
+.content {
   max-width: 1424px;
- display: grid;
- grid-template-columns: 50% 50%;
- column-gap: 5%;
- row-gap: 5%;
- place-content: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 5%;
+  row-gap: 5%;
+  place-content: center;
 }
 
 .file-select::before {
@@ -136,8 +146,10 @@ button:hover{
   cursor: pointer;
   border-bottom: none;
   border-radius: 10px;
-  content: "SELECCIONAR IMAGE"; /* testo por defecto */
+  content: "SELECCIONAR IMAGEN";
+  /* testo por defecto */
 }
+
 .file-select input[type="file"] {
   opacity: 0;
   width: 200px;
@@ -145,7 +157,7 @@ button:hover{
   display: inline-block;
 }
 
-input{
+input {
   width: 100%;
   height: 40px;
   background: none;
@@ -155,12 +167,13 @@ input{
   padding-left: 10px;
   color: #fad819;
 }
-input::placeholder{
+
+input::placeholder {
   color: #fad819;
   opacity: 0.4;
 }
 
-select{
+select {
   width: 100%;
   height: 40px;
   background: none;
@@ -171,14 +184,13 @@ select{
   padding-left: 10px;
   color: #fad8197e;
 }
-select option{
-background: #212121;
-color: #bda521;
+
+select option {
+  background: #212121;
+  color: #bda521;
 }
-select option:hover{
+
+select option:hover {
   background: #181717;
-color: #bda521;
-}
-
-
-</style>
+  color: #bda521;
+}</style>
