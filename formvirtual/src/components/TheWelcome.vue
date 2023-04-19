@@ -1,318 +1,228 @@
-
 <template>
-  <!--
-    
-  --><div class="container">
-    <div class="lbl-menu">
-      <label for="radio1"> 1</label>
-      <label for="radio2"> 2</label>
-      <label for="radio3"> 3</label>
+  <!-- MultiStep Form -->
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form id="msform">
+        <!-- progressbar -->
+        <ul id="progressbar">
+          <li class="active">Personal Details</li>
+          <li>Social Profiles</li>
+          <li>Account Setup</li>
+        </ul>
+        <!-- fieldsets -->
+        <fieldset>
+          <h2 class="fs-title">Personal Details</h2>
+          <h3 class="fs-subtitle">Tell us something more about you</h3>
+          <select name="" id=""><option value="">País</option></select>
+          <label for="">Genero</label>
+          <select name="" id="">
+            <option value="">mujer</option>
+            <option value="">hombre</option>
+          </select>
+          <input type="text" name="fname" placeholder="First Name" />
+          <input type="text" name="lname" placeholder="Last Name" />
+          <input type="text" name="phone" placeholder="Phone" />
+          <input type="date">
+          <select name="" id="">
+            <option value="">CC</option>
+            <option value="">TI</option>
+            <option value="">PP</option>
+          </select>
+          <input type="number" placeholder="Numero documento"/>
+          <input type="file"> 
+          <input type="file"> 
+          <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+        <fieldset>
+          <h2 class="fs-title">Social Profiles</h2>
+          <h3 class="fs-subtitle">Your presence on the social network</h3>
+          <input type="text" name="twitter" placeholder="Correo electrónico" />
+          <input type="password" name="facebook" placeholder="contraseña" />
+          <input type="text" name="gplus" placeholder="Confirmasr Contraseña" />
+          <input type="text" placeholder="Numero telefono">
+          <input type="text " placeholder="Numero Celular">
+          <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+          <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset>
+          <h2 class="fs-title">Create your account</h2>
+          <h3 class="fs-subtitle">Fill in your credentials</h3>
+          <input type="text" name="email" placeholder="Direccion" />
+          <input type="password" name="pass" placeholder="Código postal" />
+          <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+          <input type="submit" name="submit" class="submit action-button" value="Submit" />
+        </fieldset>
+      </form>
     </div>
-
-    <form name="form" id="form" v-on:submit.prevent="procesar();">
-      <div class="content">
-
-        <input type="radio" name="radio" id="radio1" checked>
-        <div class="tab1">
-          <input type="text" id="name" placeholder="PRIMER NOMBRE" v-model="part1.primerNombre" >
-          <input type="text" placeholder="SEGUNDO NOMBRE" v-model="part1.segundoNombre" >
-          <select name="" id="myDiv" >
-            <option value="" >PAIS</option>
-          </select>
-          <input type="date" placeholder="FECHA" v-model="part1.fecha" >
-          <select name="" id="" v-model="part1.tipoDocumento" value="TIPO DOCUMENTO" >
-            <option value="" >TARJETA IDENTIDAD</option>
-            <option value="">CÉDULA</option>
-            <option value="">PASAPORTE</option>
-          </select>
-          <input type="number" placeholder="NUMERO DE DOCUMENTO" v-model="part1.numeroDocumento" >
-          <input type="file" placeholder="FOTO DOCUMENTO ADELANTE" @change="onChangeFile" class="file-select">
-          <input type="file" placeholder="FOTO DOCUMENTO ATRÁS" @change="onChangeFile2" class="file-select">
-        
-        </div>
-
-        <input type="radio" name="radio" id="radio2">
-        <div class="tab2">
-          <!-- paso 2 -->
-
-          <input type="text" placeholder="EMAIL" v-model="part2.email">
-          <input type="password" placeholder="PASSWORD" v-model="part2.password">
-          <input type="password" placeholder="CONFIRMAR CONTRASEÑA" v-model="part2.passwordConfirm">
-          <input type="number" placeholder="NUMERO TELEFONO" v-model="part2.tel">
-          <input type="number" placeholder="NUMERO CELULAR" v-model="part2.phone">
-        
-        </div>
-
-        <input type="radio" name="radio" id="radio3">
-        <div class="tab3">
-
-        <!-- paso 3 -->
-        <input type="text" placeholder="DIRECCION RESIDENCIA" v-model="part3.addres">
-        <input type="number" placeholder="CODIGO POSTAL" v-model="part3.codigoPostal">
-        <input type="submit" value="ENVIAR" title="Enviar" class="button" />
-        </div>
-      </div>
-    </form>
   </div>
-
-  <div class="container">
-
-        
-    </div>
+  <!-- /.MultiStep Form -->
 </template>
 
+<!-- javascript -->
 <script>
 
-export default {
-  name: 'ContactoComponent',
-  data() {
-    return {
-      part1: {
-        primerNombre: "",
-        segundoNombre: "",
-        pais: "",
-        genero: "",
-        fecha: "",
-        tipoDocumento: "",
-        numeroDocumento: "",
-        fotoAdelante: "",
-        fotoAtras: ""
-      },
-      part2: {
-        email: "",
-        password: "",
-        passwordConfirm: "",
-        tel: "",
-        phone: ""
-      },
-      part3: {
-        addres: "",
-        codigoPostal: ""
-      },
-    }
-  },
-  methods: {
-    procesar() {
-     alert("has sido registrado con estos datos: \n" + "Primer nombre" + this.part1.primerNombre + "\n" +  "segundo nombre" + this.part1.segundoNombre + "\n" + "pais" + this.part1.pais + "\n"  + "Fecha" + this.part1.fecha + "\n" + "tipo documento" + this.part1.tipoDocumento + "\n"  + "Numero documento" + this.part1.numeroDocumento + "\n" + "Foto adelante" + this.part1.fotoAdelante + "\n" + "foto atras" + this.part1.fotoAtras + "\n" + "Email" + this.part2.email + "\n" + "Contraseña" + this.part2.password + "\n"  + "Telefono" + this.part2.tel + "\n" + "Numero Celulat" + this.part2.phone + "\n" + "Direccion" + this.part3.addres + "\n" + "Codigo postal" + this.part3.codigoPostal)
-    },
-    onChangeFile(event) {
-      this.$emit('update:modelValue', event.target.files[0])
-    },
-    onChangeFile2(event) {
-      this.$emit('update:modelValue', event.target.files[0])
-    }
-  }
-}
-
-//peticion para los paises
-//validacion de formulario
-
 </script>
-
-<style scoped>
-.file-select::before {
-  background-color: #fad819;
-  background-image: url("../assets/galeria.svg");
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 40px;
-  color: #000000;
-  font-weight: 900;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 5%;
-  content: "SELECCIONAR IMAGE"; /* testo por defecto */
+<!-- estilos -->
+<style>
+#msform {
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
 }
 
-.file-select input[type="file"] {
-  opacity: 0;
-  width: 200px;
-  height: 32px;
-  display: inline-block;
-}
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 8px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
 
-.container{
-    width: 100%;
-   display: flex;
-   flex-direction: column;
-   padding-right: 50px;
-   font-family: 'Montserrat', sans-serif;
-
-}
-.lbl-menu{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
-    column-gap: 20px;
-}
-.lbl-menu label{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-    background: #fad819;
-    color: #000000;
-    cursor: pointer;
-    transition: all 400ms ease;
-    border-radius: 50%;
-    font-weight: 800;
-}
-.lbl-menu label:hover{
-    background: #bda521;
-}
-.content{
+  /*stacking fieldsets above each other*/
   position: relative;
 }
-.content div{
-    width: 800px;
-    height: 400px;
-    position: absolute;
-    right: -130%;
-    line-height: 1.8;
-    transition: all 600ms ease;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0.90);
-    background: none;
-}
-#radio1,#radio2,#radio3{
-    display: none;
-}
-#radio1:checked ~ .tab1,
-#radio2:checked ~ .tab2,
-#radio3:checked ~ .tab3
-{
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-}
-.content div:after{
-    position: absolute;
-    content: "";
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid transparent;
 
-    bottom: 100%;
-    left: 28px;
-}
-.content .tab2:after{
-    left: 12px;
-}
-.content .tab3:after{
-    left: 110px;
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
 }
 
-.tab1{
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns: 320px 320px;
-  column-gap: 30px;
-  row-gap: 30px;
-}
-
-.tab2{
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns: 320px 320px;
-  column-gap: 30px;
-  row-gap: 30px;
-}
-
-.tab3{
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns: 320px 320px;
-  column-gap: 30px;
-  row-gap: 30px;
-}
-
-@media (max-width: 800px) {
-  .tab1{
-    margin-top: 160px;
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns: 320px;
-  row-gap: 50px;
-}
-
-.tab2{
-  margin-top: 30px;
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns: 320px;
-  row-gap: 50px;
-}
-
-.tab3{
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns: 320px;
-  row-gap: 50px;
-}
-}
-
-input{
-  width: 100%;
-  height: 40px;
-  background: none;
-  border-bottom: solid #fad8197e;
-  border-left: none;
-  border-right: none;
-  padding-left: 10px;
-  color: #fad819;
-}
-
-input::placeholder{
-  color: #fad819;
-  opacity: 0.4;
-}
-
-select{
-  width: 100%;
-  height: 40px;
-  background: none;
-  border-bottom: solid #fad8197e;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  padding-left: 10px;
-  color: #fad8197e;
-}
-
-select option{
-background: #212121;
-color: #bda521;
-}
-
-select option:hover{
-  background: #181717;
-color: #bda521;
-}
-
-.button{
-  font-weight: 800;
+/*inputs*/
+#msform input,
+#msform textarea {
+  padding: 5px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  cursor: pointer;
-  border: solid #fad819;
-  background: none;
-  color: #fad819;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
 }
 
-.button:hover{
-  background: #fad819;
-  color: #212121;
-  border: none;
+#msform input:focus,
+#msform textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #2098ce;
+  outline-width: 0;
+  transition: All 0.5s ease-in;
+  -webkit-transition: All 0.5s ease-in;
+  -moz-transition: All 0.5s ease-in;
+  -o-transition: All 0.5s ease-in;
 }
-</style>
+
+/*buttons*/
+#msform .action-button {
+  width: 100px;
+  background: #2098ce;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #2098ce;
+}
+
+#msform .action-button-previous {
+  width: 100px;
+  background: #aCbEd0;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #aCbEd0;
+}
+
+/*headings*/
+.fs-title {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+}
+
+#progressbar li {
+  list-style-type: none;
+  color: #666;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 24px;
+  height: 24px;
+  line-height: 26px;
+  display: block;
+  font-size: 12px;
+  color: #333;
+  background: white;
+  border-radius: 25px;
+  margin: 0 auto 10px auto;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1;
+  /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+
+/*marking active/completed steps blue*/
+/*The number of the step and the connector before it = blue*/
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #2098ce;
+  color: white;
+}</style>

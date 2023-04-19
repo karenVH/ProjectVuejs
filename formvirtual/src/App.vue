@@ -1,11 +1,11 @@
 <script setup>
+import AllStep from './components/AllStep.vue';
 import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-    <h1>REGISTRO</h1>
-    <TheWelcome />
-
+   
+    <AllStep/>
 </template>
 
 
