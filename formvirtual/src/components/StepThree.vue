@@ -132,6 +132,11 @@ button:hover{
 }
 
 }
+
+.file-select{
+  background: none;
+  border: none;
+}
 .file-select::before {
   background-color: #fad819;
   background-image: url("../assets/galeria.svg");
@@ -156,9 +161,10 @@ button:hover{
 }
 
 input{
+  border-radius: 10px;
   width: 100%;
   height: 40px;
-  background: none;
+  background: #000000;
   border-bottom: solid #fad8197e;
   border-left: none;
   border-right: none;
@@ -171,9 +177,10 @@ input::placeholder{
 }
 
 select{
+  border-radius: 10px;
   width: 100%;
   height: 40px;
-  background: none;
+  background: #000000;
   border-bottom: solid #fad8197e;
   border-left: none;
   border-right: none;
