@@ -12,6 +12,12 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 700px) {
+  body {
+    overflow-y: auto;
+  }
+}
+
 #app {
   width: 100vw;
 }
