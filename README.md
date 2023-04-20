@@ -36,7 +36,8 @@ npm run dev
 http://localhost:5173/
 ```
 
-*Eso es todo, podrás probar el formulario.
++ Eso es todo, podrás probar el formulario.
+Para poder pasar los pasos debes comprobar todas las validacones
 
 ## Construido con 🛠️
 
