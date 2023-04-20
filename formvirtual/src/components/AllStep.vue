@@ -1,6 +1,6 @@
 <template>
     <div>
-      <component :is="currentStepComponent" :step="currentStep" @next-step="onNextStep"></component>
+      <component :is="currentStepComponent" :step="currentStep" @next-step="onNextStep" @previous-step="onPreviousStep"></component>
       <div v-if="errorMessage" class="error">{{errorMessage}}</div>
     </div>
   </template>
@@ -38,7 +38,13 @@
           // Submit the form data
           console.log(this.formData);
         }
+      },
+      onPreviousStep() {
+      if (this.currentStep > 1) {
+        this.currentStep--;
       }
+
+    }
     }
   }
   </script>
