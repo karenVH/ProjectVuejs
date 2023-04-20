@@ -6,14 +6,26 @@
         <strong>{{ error }}</strong>
       </div>
       <div class="content">
-        <input type="text" v-model="nombre" placeholder="Direccion">
-        <input type="email" v-model="email" placeholder="C+odigo postal">
+        <input type="text" v-model="direccion" placeholder="Direccion">
+        <input type="email" v-model="codigopostal" placeholder="Codigo postal">
    
         </div>
         <div class="itembtn">
-
-          <button @click="onSubmit">SIGUIENTE</button>
-          <button @click="onBack">Anterior</button>
+          
+        <a @click="onSubmit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      ENVIAR
+    </a>
+    <a @click="onBack">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      ANTRÁS
+    </a>
         </div>
     </div>
   </template>
@@ -25,18 +37,18 @@
     },
     data() {
       return {
-        nombre: '',
-        email: '',
+        direccion: '',
+        codigopostal: '',
         error: null
       }
     },
     methods: {
       onSubmit() {
-        if (!this.nombre || !this.email) {
+        if (!this.direccion || !this.codigopostal) {
           this.error = 'Por favor, completa todos los campos';
         } else {
           this.error = null;
-          this.$emit('next-step', { nombre: this.nombre, email: this.email });
+          this.$emit('next-step', { direccion: this.direccion, codigopostal: this.codigopostal });
         }
       },
     onBack() {
@@ -51,7 +63,6 @@
 
 strong{
   width: 100%;
- border: 1px solid #776609;
   padding: 1%;
   border-radius: 5px;
   color: #fad819;
@@ -105,11 +116,22 @@ button:hover{
   max-width: 1424px;
  display: grid;
  grid-template-columns: 50% 50%;
+
  column-gap: 5%;
  row-gap: 5%;
  place-content: center;
 }
 
+@media (max-width: 650px) {
+  .content{
+   display: grid;
+ grid-template-columns: 90%;
+ column-gap: 5%;
+ row-gap: 5%;
+ place-content: center;
+}
+
+}
 .file-select::before {
   background-color: #fad819;
   background-image: url("../assets/galeria.svg");
@@ -168,5 +190,108 @@ select option:hover{
 color: #bda521;
 }
 
+a {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fad819;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
 
+a:hover {
+  background: #fad819;
+  color: #000000;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ffed87,
+              0 0 25px #fad819,
+              0 0 50px #fad819,
+              0 0 100px #ffed87;
+}
+
+ a span {
+  position: absolute;
+  display: block;
+}
+
+a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fad819);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #fad819);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+ a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #fad819);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+ a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #fad819);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
 </style>

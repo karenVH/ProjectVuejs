@@ -10,35 +10,41 @@
       <input type="text" v-model="segundonombre" placeholder="Segundo Nombre" />
       <input type="text" v-model="apellido" placeholder="Apellidos" />
  
-      <select name="" id="">
+      <select v-model="pais">
         <option value="">País</option>
+        <option v-for="c in countries" :value="c">{{ c }}</option>
       </select>
-      <select name="" id="">
+      <select v-model="genero">
         <option value="">Genero</option>
-        <option value="">mujer</option>
-        <option value="">hombre</option>
+        <option v-for="c in g" :value="c">{{ c }}</option>
       </select>
-      <input type="date">
-      <select name="" id="">
+      <input type="date" v-model="fecha">
+      <select v-model="tipodocumento">
         <option value="">Tipo Documento</option>
-        <option value="opcion1">CC</option>
-        <option value="opcion2">TI</option>
-        <option value="opcion3">PP</option>
+        <option v-for="c in td" :value="c">{{ c }}</option>
       </select>
-      <input type="number" placeholder="Numero documento" />
-      <input type="file" placeholder="FOTO DOCUMENTO ADELANTE" class="file-select" id="archivo" >
-      <input type="file" placeholder="FOTO DOCUMENTO ATRÁS" class="file-select">
+      <input type="number" placeholder="Numero documento" v-model="numerodocumento" />
+      <input ref="file" type="file" placeholder="FOTO DOCUMENTO ADELANTE" class="file-select" id="archivo" @change="handleFileUpload">
+      <input ref="fileatras" type="file" placeholder="FOTO DOCUMENTO ATRÁS" class="file-select" @change="handleFileAtras">
 
     </div>
     <div class="item">
-
-      <button @click="onSubmit">SIGUIENTE</button>
+      <a @click="onSubmit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      SIGUIENTE
+    </a>
     </div>
   </div>
 </template>
   
 <script lang="ts">
+
+
 export default {
+
   props: {
     step: Number
   },
@@ -48,24 +54,39 @@ export default {
       segundonombre: '',
       apellido: '',
       pais: '',
+      countries: ['BRASIL', 'COLOMBIA', 'ARGENTINA', 'SALVADOR'],
       genero: '',
+      g: ['MUJER', 'HOMBRE'],
       fecha: '',
       tipodocumento: '',
-      numerodocumento: '',
-      imagenAdelante: null,
-      imagenAtras: '',
-      error: null
+      td: ['CC', 'TI', 'PASAPORTE'],
+      numerodocumento: 0,
+      file: null,
+      fileatras: null,
+      error: null,
     }
   },
   methods: {
+  
     onSubmit() {
-      if (!this.nombre || !this.email) {
+      console.log(`País seleccionado: ${this.pais}`);
+      if (!this.nombre || !this.segundonombre || !this.fileatras || !this.file || !this.apellido || !this.pais || !this.genero || !this.fecha || !this.tipodocumento || !this.numerodocumento  ) {
         this.error = 'Por favor, completa todos los campos';
+        console.log('aqui'+ this.file);
       } else {
         this.error = null;
-        this.$emit('next-step', { nombre: this.nombre, email: this.email });
+        this.$emit('next-step', { nombre: this.nombre, segundonombre: this.segundonombre, file: this.file, fileatras: this.fileatras, apellido: this.apellido, pais: this.pais, genero: this.genero, fecha: this.fecha, tipodocumento: this.tipodocumento, numerodocumento: this.numerodocumento});
       }
+    },
+    handleFileUpload(event) {
+      this.file = event.target.files[0];
+    
+    },
+    handleFileAtras(event){
+      this.fileatras = event.target.files[0];
     }
+    
+    
   }
 }
 </script>
@@ -74,10 +95,10 @@ export default {
 <style>
 strong {
   width: 100%;
-  border: 1px solid #fad819;
+  background: #2c2b2886;
   padding: 2%;
   border-radius: 5px;
-  color: #fad819;
+  color: #000000;
 }
 
 .errordiv img {
@@ -193,4 +214,111 @@ select option {
 select option:hover {
   background: #181717;
   color: #bda521;
-}</style>
+}
+
+a {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fad819;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+a:hover {
+  background: #fad819;
+  color: #000000;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ffed87,
+              0 0 25px #fad819,
+              0 0 50px #fad819,
+              0 0 100px #ffed87;
+}
+
+ a span {
+  position: absolute;
+  display: block;
+}
+
+a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fad819);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #fad819);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+ a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #fad819);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+ a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #fad819);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+</style>
